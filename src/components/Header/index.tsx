@@ -14,7 +14,7 @@ export function Header({selectedTable, onCancelOrder} : HeaderProps) {
         <>
           <Text size={14} opacity={0.9}>Bem Vindo(a) ao</Text>
             <Text size={24} weight="700">
-              D'talia
+              WAITER
             <Text size={24}>APP</Text>
           </Text>
         </>

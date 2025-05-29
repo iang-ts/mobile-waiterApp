@@ -1,9 +1,9 @@
-import { Modal, Platform, Touchable, TouchableOpacity } from "react-native";
-import { Text } from "../Text";
-import { ModalBody, Overlay, Header, Form, Input } from "./styles";
-import { Close } from "../Icons/Close";
+import { useEffect, useRef, useState } from "react";
+import { Modal, Platform, TextInput, TouchableOpacity } from "react-native";
 import { Button } from "../Button";
-import { useState } from "react";
+import { Close } from "../Icons/Close";
+import { Text } from "../Text";
+import { Form, Header, Input, ModalBody, Overlay } from "./styles";
 
 interface TablemodalProps {
   visible: boolean;
@@ -13,6 +13,15 @@ interface TablemodalProps {
 
 export function TableModal({ visible, onClose, onSave }: TablemodalProps) {
   const [table, setTable] = useState('');
+  const inputRef = useRef<TextInput>(null);
+
+  useEffect(() => {
+    if (visible) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [visible]);
 
   function handleSave() {
     setTable('');
@@ -39,6 +48,7 @@ export function TableModal({ visible, onClose, onSave }: TablemodalProps) {
 
           <Form>
             <Input
+              ref={inputRef}
               placeholder="Número da mesa"
               placeholderTextColor="#666"
               keyboardType="number-pad"
